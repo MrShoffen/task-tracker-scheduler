@@ -30,7 +30,6 @@ public class QuartzSchedulerService {
         JobDetail job = JobBuilder.newJob(ExpireRegistrationAttemptJob.class)
                 .withIdentity("registrationExpiration_" + event.getRegistrationId().toString())
                 .usingJobData("registrationId", event.getRegistrationId().toString())
-                .usingJobData(new JobDataMap(Map.of("publisher", eventPublisher)))
                 .build();
 
         Trigger trigger = TriggerBuilder.newTrigger()

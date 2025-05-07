@@ -1,6 +1,15 @@
 ### Configurations from config server
 kafka-user:
   bootstrap-servers: 192.168.0.125:29092,192.168.0.125:39092,192.168.0.125:49092
+
+postgres-user:
+  server:
+    url: 192.168.0.125
+    port: 3434
+    database: task_db
+  credentials:
+    username: postgres
+    password: Fjeoqi38B3Nio83ndNehH328
 ###
 
 
@@ -8,9 +17,34 @@ spring:
   application:
     name: scheduler
   profiles:
-    active: kafka-user
+    active: kafka-user, postgres-user
   config:
     import: optional:configserver:http://${CONFIG_SERVER_USER}:${CONFIG_SERVER_PASSWORD}@${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8012}
+
+  datasource:
+    url: jdbc:postgresql://${postgres-user.server.url}:${postgres-user.server.port}/${postgres-user.server.database}
+    username: ${postgres-user.credentials.username}
+    password: ${postgres-user.credentials.password}
+    driver-class-name: org.postgresql.Driver
+
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: TaskScheduler
+            instanceId: AUTO
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            tablePrefix: quartz.QRTZ_
+            isClustered: true
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
 
   kafka:
     bootstrap-servers: ${kafka-user.bootstrap-servers}
