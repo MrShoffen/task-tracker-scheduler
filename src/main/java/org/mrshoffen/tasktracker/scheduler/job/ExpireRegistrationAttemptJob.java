@@ -12,7 +12,6 @@ public class ExpireRegistrationAttemptJob implements Job {
     @Autowired
     private SchedulerEventPublisher eventPublisher;
 
-
     @Override
     public void execute(JobExecutionContext context) {
         String userId = context.getJobDetail().getJobDataMap().getString("registrationId");

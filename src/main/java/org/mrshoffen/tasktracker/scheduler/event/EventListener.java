@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.mrshoffen.tasktracker.commons.kafka.event.registration.RegistrationAttemptEvent;
 import org.mrshoffen.tasktracker.commons.kafka.event.registration.RegistrationSuccessfulEvent;
 import org.mrshoffen.tasktracker.scheduler.quartz.QuartzSchedulerService;
-import org.quartz.SchedulerException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

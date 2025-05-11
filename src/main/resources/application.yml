@@ -1,7 +1,7 @@
 ### Configurations from config server
 kafka-user:
   bootstrap-servers: 192.168.0.125:29092,192.168.0.125:39092,192.168.0.125:49092
-
+#
 postgres-user:
   server:
     url: 192.168.0.125
@@ -16,8 +16,6 @@ postgres-user:
 spring:
   application:
     name: scheduler
-  profiles:
-    active: kafka-user, postgres-user
   config:
     import: optional:configserver:http://${CONFIG_SERVER_USER}:${CONFIG_SERVER_PASSWORD}@${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8012}
 
@@ -56,6 +54,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
+
       group-id: ${spring.application.name}
       key-deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
