@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.mrshoffen.tasktracker'
-version = '1.0.5'
+version = '1.0.6'
 
 java {
     toolchain {
@@ -29,6 +29,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-json'
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
