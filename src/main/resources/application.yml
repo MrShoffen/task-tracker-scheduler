@@ -61,4 +61,19 @@ spring:
       properties:
         spring.json.trusted.packages: "org.mrshoffen.tasktracker.commons.kafka.event.*"
 
+server.port: ${PORT:8080}
+
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    metrics:
+      access: read_only
+    prometheus:
+      access: read_only
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, metrics
 

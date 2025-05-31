@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.mrshoffen.tasktracker'
-version = '1.0.8'
+version = '1.0.9'
 
 java {
     toolchain {
@@ -31,6 +31,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
